@@ -3,7 +3,7 @@
 
   <div
     class="p-5 rounded-3xl shadow-2xl bg-linear-to-bl from-gray-700 to-gray-800 inset-shadow-sm inset-shadow-amber-950 bg-gray-800">
-    @for(row of board; track row) {
+    @for(row of board; track $index) {
     <div class="flex flex-row">
       @for (piece of row; track piece) {
       <div class="relative">
@@ -23,11 +23,13 @@
   </div>
 
   <div class="bg-amber-500/50 backdrop-blur-3xl p-5 rounded-full">
-    @for(_ of board[0]; track index; let index = $index) {
+    @for(_ of board[0]; track $index; let index = $index) {
     <button
-      class="group m-1.5 w-16 h-16 rotate-180 bg-gray-700 rounded-full shadow-xl inset-shadow-gray-800 inset-shadow-sm cursor-pointer hover:scale-105 hover:shadow-2xl active:translate-y-3 transition"
-      (click)="populateRandomField()">
-      <span class="text-4xl text-gray-50 group-hover:text-amber-300">&#8679;</span>
+      class="group m-1.5 w-16 h-16 rotate-180 rounded-full shadow-xl inset-shadow-sm cursor-pointer hover:scale-105 hover:shadow-2xl active:translate-y-3 transition"
+      [class.inset-shadow-amber-800]="currentPlayer === 2" [class.bg-amber-500]="currentPlayer === 2"
+      [class.inset-shadow-sky-800]="currentPlayer === 1" [class.bg-sky-500]="currentPlayer === 1"
+      (click)="dropChecker(index)">
+      <span class="text-4xl text-gray-50">&#8679;</span>
     </button>
     }
   </div>
