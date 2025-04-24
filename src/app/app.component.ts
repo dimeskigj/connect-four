@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GameService } from './services/game.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +12,9 @@ export class AppComponent {
     .map(() => Array(7).fill(0));
   currentPlayer: number = 1;
 
-  constructor(private gameService: GameService) {
-    this.gameService.$gameState.subscribe((state) => {
-      this.board = state?.G.board!;
-      this.currentPlayer = +state?.ctx.currentPlayer! + 1;
-      console.log(this.currentPlayer)
-    });
-  }
+  constructor() {}
 
   dropChecker(column: number): void {
-    this.gameService.dropChecker(column);
+    console.log('Dropped checker @ ', column);
   }
 }
