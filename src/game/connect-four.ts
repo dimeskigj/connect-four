@@ -74,4 +74,20 @@ export const ConnectFourGame: Game<ConnectFourState> = {
       }
     }
   },
+  ai: {
+    enumerate: (G, ctx, playerID) => {
+      const moves: { move: string; args?: any[] }[] = [];
+
+      for (let col = 0; col <= G.board.length; col++) {
+        if (G.board[0][col] === 0) {
+          moves.push({
+            move: 'dropChecker',
+            args: [col],
+          });
+        }
+      }
+
+      return moves;
+    },
+  },
 };
